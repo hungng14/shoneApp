@@ -9,6 +9,8 @@ parse.transform('grow-2 left-4 rotate-15 up-10');
 import style from '../../styles/screens/Login';
 
 const screenLogin = props => {
+  console.log(props);
+  const {modifyValue, state = {}} = props;
   // const colorsGradient1 = [
   //   '#A91EEA',
   //   '#B138E9',
@@ -24,11 +26,6 @@ const screenLogin = props => {
     '#2F4AD3',
   ];
 
-  function moveScreen() {
-    props.navigation.navigate({
-      routeName: 'LoggedIn',
-    });
-  }
   return (
     <LinearGradient colors={colorsGradient} style={style.container}>
       <View style={style.logo}>
@@ -36,9 +33,16 @@ const screenLogin = props => {
       </View>
       <View style={style.form}>
         <View style={style.viewFormInput}>
-          <TextInput style={style.inputText} placeholder="Username" />
           <TextInput
             style={style.inputText}
+            value={`${state.username || ''}`}
+            onChangeText={val => modifyValue('username', val)}
+            placeholder="Username"
+          />
+          <TextInput
+            style={style.inputText}
+            value={`${state.password || ''}`}
+            onChangeText={val => modifyValue('password', val)}
             placeholder="Password"
             secureTextEntry={true}
           />
@@ -50,7 +54,7 @@ const screenLogin = props => {
               gradientDirection="diagonal">
               Sign In
             </GradientButton> */}
-            <Button onPress={() => moveScreen()} style={style.btn}>
+            <Button onPress={() => props.signIn()} style={style.btn}>
               Sign In
             </Button>
           </View>

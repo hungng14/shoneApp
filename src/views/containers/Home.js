@@ -1,18 +1,17 @@
 import React, {Component} from 'react';
-import {
-  Dimensions,
-  View,
-  Animated,
-  Easing,
-  ScrollView,
-} from 'react-native';
+import {Dimensions, View, Animated, Easing, ScrollView} from 'react-native';
 import HomeScreen from '../screens/Home';
 import HeaderApp from '../layouts/Header';
+import Auth from '../../configs/auth';
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.AnimationBgColor = new Animated.Value(0);
+    (async function() {
+      const token = await Auth.getUserLogin();
+      console.log(token);
+    })();
   }
 
   componentDidMount() {
@@ -48,4 +47,3 @@ export default class Home extends Component {
     );
   }
 }
-
