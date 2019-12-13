@@ -6,6 +6,7 @@ class Http {
   async signInOrRegister(data, url) {
     try {
       const _url = `${URL_API_DEFAULT}${url}`;
+      console.log(_url);
       const result = await axios({
         method: 'POST',
         url: _url,

@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import {Text, View, Alert} from 'react-native';
+import Toast from 'react-native-simple-toast';
+import {useToast} from 'react-native-styled-toast';
 import LoginScreen from '../screens/Login';
 import Auth from '../../configs/auth';
 import Http from '../../utilities/http';
+const {toast} = useToast();
 const {signInOrRegister} = Http;
 export default class Login extends Component {
   constructor() {
@@ -23,18 +26,22 @@ export default class Login extends Component {
   }
 
   async signIn() {
+    toast({
+      message: 'Woo! This is a success toast.',
+    });
     const params = {
       username: this.state.username,
       password: this.state.password,
     };
     const result = await signInOrRegister(params, '/sign_in');
+    console.log(result);
     const {success = false, message = ''} = result;
     if (success) {
       await Auth.setAuth(result.data);
       this.moveScreen();
       return;
     }
-    Alert.alert(message);
+    Toast.showWithGravity(message, Toast.LONG, Toast.CENTER);
   }
 
   render() {
