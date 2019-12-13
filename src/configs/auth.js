@@ -1,4 +1,4 @@
-import {AsyncStorage} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import shared from '../utilities/shared';
 const {isEmpty} = shared;
 class Auth {
@@ -11,8 +11,8 @@ class Auth {
       role: data.role,
     };
     const infosAuth = [
-      ['token', token],
-      ['userLogin', JSON.stringify(userLogin)],
+      ['@token', String(token)],
+      ['@userLogin', JSON.stringify(userLogin)],
     ];
     await Auth.setInfoAuth(infosAuth);
   }
@@ -22,17 +22,23 @@ class Auth {
   }
 
   async getToken() {
-    const token = await AsyncStorage.getItem('token');
+    const token = await AsyncStorage.getItem('@token');
     return !isEmpty(token) ? token : '';
   }
 
   async getUserLogin() {
-    const userLogin = await AsyncStorage.getItem('userLogin');
+    const userLogin = await AsyncStorage.getItem('@userLogin');
     return !isEmpty(userLogin) ? JSON.parse(userLogin) : {};
   }
 
   async destroyAuth() {
-    await AsyncStorage.multiRemove(['token', 'userLogin']);
+    await AsyncStorage.multiRemove(['@token', '@userLogin']);
+  }
+
+  async isAuthenticated() {
+    const token = await this.getToken();
+    console.log('token', token.length);
+    return !isEmpty(token) ? true : false;
   }
 }
 

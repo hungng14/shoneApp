@@ -6,6 +6,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 /** screen */
 import TabBottom from '../layouts/TabBottom';
 /** screen */
+import WaitingContainer from '../containers/Waiting';
 import LoginContainer from '../containers/Login';
 import HomeContainer from '../containers/Home';
 import NewsContainer from '../containers/News';
@@ -59,6 +60,7 @@ const AppBottomTabNavigator = createBottomTabNavigator({
 
 const AppStackNavigator = createStackNavigator(
   {
+    Waiting: {screen: WaitingContainer, navigationOptions: {header: null}},
     Login: {screen: LoginContainer, navigationOptions: {header: null}},
     LoggedIn: {
       screen: AppBottomTabNavigator,
@@ -66,7 +68,7 @@ const AppStackNavigator = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'Waiting',
   },
 );
 

@@ -9,7 +9,6 @@ parse.transform('grow-2 left-4 rotate-15 up-10');
 import style from '../../styles/screens/Login';
 
 const screenLogin = props => {
-  console.log(props);
   const {modifyValue, state = {}} = props;
   // const colorsGradient1 = [
   //   '#A91EEA',

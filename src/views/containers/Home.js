@@ -8,10 +8,6 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.AnimationBgColor = new Animated.Value(0);
-    (async function() {
-      const token = await Auth.getUserLogin();
-      console.log(token);
-    })();
   }
 
   componentDidMount() {
