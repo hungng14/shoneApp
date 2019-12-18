@@ -1,6 +1,8 @@
 import axios from 'axios';
 import Auth from '../configs/auth';
 import {URL_API, URL_API_DEFAULT} from '../configs';
+import configAxios from '../configs/axios';
+configAxios(axios);
 
 class Http {
   async signInOrRegister(data, url) {

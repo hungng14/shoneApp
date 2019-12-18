@@ -3,6 +3,7 @@ import {Text, View, Animated, Image} from 'react-native';
 import Button from 'react-native-button';
 import Video from 'react-native-video';
 import styleHome from '../../styles/screens/Home';
+import Auth from '../../configs/auth';
 
 const HomeScreen = props => {
   return (

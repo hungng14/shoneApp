@@ -44,6 +44,8 @@ target 'shone' do
 
   pod 'react-native-video', :path => '../node_modules/react-native-video'
 
+  pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
+
   target 'shoneTests' do
     inherit! :search_paths
     # Pods for testing

@@ -14,6 +14,7 @@ export default class Waiting extends Component {
   }
   componentDidMount() {
     setTimeout(async () => {
+      await Auth.destroyAuth();
       const isAuthenticated = await Auth.isAuthenticated();
       isAuthenticated ? this.moveScreen('LoggedIn') : this.moveScreen('Login');
     }, 1000);

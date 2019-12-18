@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import shared from '../utilities/shared';
-const {isEmpty} = shared;
+// import Keychain from 'react-native-keychain';
+// console.log(Keychain)
 class Auth {
   async setAuth(data) {
-    const {token} = data;
+    const {token, refresh_token} = data;
     const userLogin = {
       email: data.email,
       username: data.username,
@@ -13,7 +13,9 @@ class Auth {
     const infosAuth = [
       ['@token', String(token)],
       ['@userLogin', JSON.stringify(userLogin)],
+      ['@refreshToken', JSON.stringify(refresh_token)],
     ];
+    // Keychain.setGenericPassword('JSON.stringify(userLogin)', 'token');
     await Auth.setInfoAuth(infosAuth);
   }
 
@@ -23,22 +25,26 @@ class Auth {
 
   async getToken() {
     const token = await AsyncStorage.getItem('@token');
-    return !isEmpty(token) ? token : '';
+    return token || '';
+  }
+
+  async getRefreshToken() {
+    const refreshToken = await AsyncStorage.getItem('@refreshToken');
+    return refreshToken || '';
   }
 
   async getUserLogin() {
     const userLogin = await AsyncStorage.getItem('@userLogin');
-    return !isEmpty(userLogin) ? JSON.parse(userLogin) : {};
+    return userLogin ? JSON.parse(userLogin) : {};
   }
 
   async destroyAuth() {
-    await AsyncStorage.multiRemove(['@token', '@userLogin']);
+    await AsyncStorage.multiRemove(['@token', '@refreshToken', '@userLogin']);
   }
 
   async isAuthenticated() {
     const token = await this.getToken();
-    console.log('token', token.length);
-    return !isEmpty(token) ? true : false;
+    return !!token;
   }
 }
 
