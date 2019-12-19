@@ -48,6 +48,11 @@ target 'shone' do
 
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
 
+  pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
+
+
+  pod 'RNGoogleSignin', :path => '../node_modules/@react-native-community/google-signin'
+
   target 'shoneTests' do
     inherit! :search_paths
     # Pods for testing

@@ -41,10 +41,10 @@ export default class Home extends Component {
             onEnd={this.onEnd} // Callback when playback finishes
             onError={this.videoError}
             style={styles.video}
-        />
-        <Text>View5o</Text>
-      </View>
-      
+          />
+          <Text>View5o</Text>
+        </View>
+
         <Text>fsfsd</Text>
       </View>
     );

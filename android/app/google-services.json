@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "484166784338",
+    "firebase_url": "https://shoneapp-92d2e.firebaseio.com",
+    "project_id": "shoneapp-92d2e",
+    "storage_bucket": "shoneapp-92d2e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484166784338:android:f9ba0f35c22b1d9dac568b",
+        "android_client_info": {
+          "package_name": "com.shone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "484166784338-3n8s2bdjotco62a8ijt86hole49jhs0i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shone",
+            "certificate_hash": "3c980ffd4cf0dc824b090029321d1748578b1dce"
+          }
+        },
+        {
+          "client_id": "484166784338-9c2ukj1llse69oevk0mp2es3gkhf8991.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaG6n-pg8x-_41JOOfciuOR5plJLDkTHo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "484166784338-9c2ukj1llse69oevk0mp2es3gkhf8991.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

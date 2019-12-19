@@ -10,7 +10,8 @@ import WaitingContainer from '../containers/Waiting';
 import LoginContainer from '../containers/Login';
 import HomeContainer from '../containers/Home';
 import NewsContainer from '../containers/News';
-import {faHome, faNewspaper} from '@fortawesome/free-solid-svg-icons';
+import AccountContainer from '../containers/Account';
+import {faHome, faNewspaper, faUser} from '@fortawesome/free-solid-svg-icons';
 
 const tabBarOptions = {
   showLabel: false,
@@ -48,6 +49,24 @@ const AppBottomTabNavigator = createBottomTabNavigator({
             focused,
             icon: faNewspaper,
             screen: 'News',
+            navigation,
+          };
+          return <TabBottom {...props} />;
+        },
+        tabBarOptions,
+      };
+    },
+  },
+  Account: {
+    screen: AccountContainer,
+    navigationOptions: ({navigation}) => {
+      return {
+        title: 'Account',
+        tabBarIcon: ({focused}) => {
+          const props = {
+            focused,
+            icon: faUser,
+            screen: 'Account',
             navigation,
           };
           return <TabBottom {...props} />;
