@@ -31,7 +31,6 @@ export default class Login extends Component {
       password: this.state.password,
     };
     const result = await signInOrRegister(params, '/sign_in');
-    console.log(result)
     const {success = false, message = ''} = result;
     if (success) {
       await Auth.setAuth(result.data);

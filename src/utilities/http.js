@@ -8,7 +8,6 @@ class Http {
   async signInOrRegister(data, url) {
     try {
       const _url = `${URL_API_DEFAULT}${url}`;
-      console.log(_url);
       const result = await axios({
         method: 'POST',
         url: _url,
@@ -22,13 +21,14 @@ class Http {
   }
   async sendData(data, method, url) {
     try {
+      const token = await Auth.getToken();
       const _url = `${URL_API}${url}`;
       const result = await axios({
         method,
         url: _url,
         data,
         params: data,
-        headers: {token: await Auth.getToken()},
+        headers: {token: token.token},
       });
       return result.data;
     } catch (error) {

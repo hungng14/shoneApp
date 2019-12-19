@@ -6,10 +6,12 @@ function configAxios(axios) {
     async response => {
       const res = response.data;
       const {status_code} = res;
+
       if (status_code === 1005) {
+        const token = await Auth.getToken();
         const paramsRefreshToken = {
-          token: Auth.getToken(),
-          refresh_token: Auth.getRefreshToken(),
+          token: token.token,
+          refresh_token: token.refresh_token,
         };
         const _res = await axios({
           method: 'POST',
@@ -19,14 +21,14 @@ function configAxios(axios) {
         });
         const infoNewToken = _res.data;
         if (infoNewToken.success) {
-          Auth.setAuth(infoNewToken.data);
+          await Auth.setAuth(infoNewToken.data);
           const {config} = response;
           config.headers.token = infoNewToken.data.token;
           const callbackRequest = await axios.request(config);
           return callbackRequest;
         }
         Auth.destroyAuth();
-        document.location.href = '/';
+        // document.location.href = '/';
       }
       return response;
     },

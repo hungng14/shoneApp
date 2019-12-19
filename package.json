@@ -54,7 +54,7 @@
   "jest": {
     "preset": "react-native",
     "setupFiles": [
-      "./src/configs/test/jest-setup.js"
+      "./src/__mocks__/index.js"
     ]
   }
 }

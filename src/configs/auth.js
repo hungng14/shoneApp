@@ -1,50 +1,48 @@
-import AsyncStorage from '@react-native-community/async-storage';
-// import Keychain from 'react-native-keychain';
-// console.log(Keychain)
+import * as Keychain from 'react-native-keychain';
 class Auth {
   async setAuth(data) {
-    const {token, refresh_token} = data;
+    const token = {
+      token: data.token,
+      refresh_token: data.refresh_token,
+    };
     const userLogin = {
       email: data.email,
       username: data.username,
       user_o_id: data.user_o_id,
       role: data.role,
     };
-    const infosAuth = [
-      ['@token', String(token)],
-      ['@userLogin', JSON.stringify(userLogin)],
-      ['@refreshToken', JSON.stringify(refresh_token)],
-    ];
-    // Keychain.setGenericPassword('JSON.stringify(userLogin)', 'token');
-    await Auth.setInfoAuth(infosAuth);
+    await Auth.setInfoAuth(userLogin, token);
   }
 
-  static async setInfoAuth(infosAuth = []) {
-    await AsyncStorage.multiSet(infosAuth);
+  static async setInfoAuth(val1, val2) {
+    const _val1 = JSON.stringify(val1);
+    const _val2 = JSON.stringify(val2);
+    await Keychain.setGenericPassword(_val1, _val2);
   }
 
   async getToken() {
-    const token = await AsyncStorage.getItem('@token');
-    return token || '';
-  }
-
-  async getRefreshToken() {
-    const refreshToken = await AsyncStorage.getItem('@refreshToken');
-    return refreshToken || '';
+    try {
+      const data = await Keychain.getGenericPassword();
+      const token = data.password ? JSON.parse(data.password) : {};
+      return token;
+    } catch (error) {
+      return {};
+    }
   }
 
   async getUserLogin() {
-    const userLogin = await AsyncStorage.getItem('@userLogin');
-    return userLogin ? JSON.parse(userLogin) : {};
+    const data = await Keychain.getGenericPassword();
+    const userLogin = data.username ? JSON.parse(data.username) : {};
+    return userLogin;
   }
 
   async destroyAuth() {
-    await AsyncStorage.multiRemove(['@token', '@refreshToken', '@userLogin']);
+    await Keychain.resetGenericPassword();
   }
 
   async isAuthenticated() {
     const token = await this.getToken();
-    return !!token;
+    return !!Object.keys(token).length;
   }
 }
 

@@ -46,6 +46,8 @@ target 'shone' do
 
   pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
 
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
   target 'shoneTests' do
     inherit! :search_paths
     # Pods for testing

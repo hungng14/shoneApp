@@ -2,15 +2,20 @@ import React, {Component} from 'react';
 import {Dimensions, View, Animated, Easing, ScrollView} from 'react-native';
 import HomeScreen from '../screens/Home';
 import HeaderApp from '../layouts/Header';
-import Auth from '../../configs/auth';
-
+import MenuAPI from '../../api/menu';
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.AnimationBgColor = new Animated.Value(0);
   }
 
+  async listMenu() {
+    const result = await MenuAPI.list();
+    const {success = false} = result;
+  }
+
   componentDidMount() {
+    this.listMenu();
     Animated.parallel([
       Animated.timing(this.AnimationBgColor, {
         duration: 500,
