@@ -1,5 +1,12 @@
 import React from 'react';
-import {Text, View, TextInput} from 'react-native';
+import {
+  Text,
+  View,
+  TextInput,
+  Dimensions,
+  StyleSheet,
+  Image,
+} from 'react-native';
 import Button from 'react-native-button';
 import LinearGradient from 'react-native-linear-gradient';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
@@ -62,13 +69,15 @@ const screenLogin = props => {
           </View>
           <View style={style.viewWrapperIcon}>
             <View style={style.wrapperIcon}>
-              <FontAwesomeIcon
-                style={style.icon}
-                size={30}
-                top={14}
-                left={13.5}
-                icon={['fab', 'twitter']}
-              />
+              <Button onPress={() => props.signIn()} style={style.btn}>
+                <FontAwesomeIcon
+                  style={style.icon}
+                  size={30}
+                  top={14}
+                  left={13.5}
+                  icon={['fab', 'twitter']}
+                />
+              </Button>
             </View>
             <View style={style.wrapperIcon}>
               <FontAwesomeIcon
@@ -80,13 +89,17 @@ const screenLogin = props => {
               />
             </View>
             <View style={style.wrapperIcon}>
-              <FontAwesomeIcon
-                style={style.icon}
-                size={30}
-                top={14}
-                left={13.5}
-                icon={['fab', 'google']}
-              />
+              <Button
+                onPress={() => props.signInWithGoogle()}
+                style={style.btn}>
+                <FontAwesomeIcon
+                  style={style.icon}
+                  size={30}
+                  top={14}
+                  left={13.5}
+                  icon={['fab', 'google']}
+                />
+              </Button>
             </View>
           </View>
           <View style={style.viewWrapperText}>
@@ -94,8 +107,48 @@ const screenLogin = props => {
           </View>
         </View>
       </View>
+      <View style={[styleWaiting.wrapper, {...state.styleWaiting}]}>
+        <View style={styleWaiting.container}>
+          <Text style={styleWaiting.text}> Loading...</Text>
+          <Image
+            style={styleWaiting.image}
+            source={require('../../assets/images/loading.gif')}
+          />
+        </View>
+      </View>
     </LinearGradient>
   );
 };
+const {width, height} = Dimensions.get('window');
+const heightScreenWaiting = height / 4;
+const halfHeight = heightScreenWaiting / 2;
+const positionTop = heightScreenWaiting + halfHeight;
+const styleWaiting = StyleSheet.create({
+  wrapper: {
+    display: 'none',
+    width,
+    height,
+    backgroundColor: 'rgba(0, 0, 0, .5)',
+    position: 'relative',
+  },
+  container: {
+    backgroundColor: '#fff',
+    height: heightScreenWaiting,
+    width,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    top: positionTop,
+    borderRadius: 4,
+  },
+  text: {
+    fontSize: 18,
+  },
+  image: {
+    height: 100,
+    width: 100,
+  },
+});
 
 export default screenLogin;

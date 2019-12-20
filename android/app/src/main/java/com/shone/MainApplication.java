@@ -7,6 +7,7 @@ import com.facebook.react.ReactApplication;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
+import io.invertase.firebase.links.RNFirebaseLinksPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
@@ -36,6 +37,8 @@ public class MainApplication extends Application implements ReactApplication {
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new KeychainPackage());
           packages.add(new RNFirebaseAuthPackage());
+          packages.add(new RNFirebaseLinksPackage());
+          // packages.add(new FBSDKPackage());
           return packages;
         }
 

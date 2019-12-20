@@ -1,4 +1,5 @@
 import * as Keychain from 'react-native-keychain';
+import {GoogleSignin} from './socialAccount';
 class Auth {
   async setAuth(data) {
     const token = {
@@ -37,6 +38,7 @@ class Auth {
   }
 
   async destroyAuth() {
+    await GoogleSignin.signOut();
     await Keychain.resetGenericPassword();
   }
 

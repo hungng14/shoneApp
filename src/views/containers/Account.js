@@ -27,8 +27,8 @@ export default class Home extends Component {
       <View style={{flex: 1, justifyContent: 'center'}}>
         <HeaderApp {...titleHeader} />
         <View style={styles.videoContainer}>
-                <Button onPress={this.logout}>Logout</Button>
-                <Modal />
+          <Button onPress={this.logout}>Logout</Button>
+          {/* <Modal /> */}
         </View>
       </View>
     );

@@ -53,6 +53,8 @@ target 'shone' do
 
   pod 'RNGoogleSignin', :path => '../node_modules/@react-native-community/google-signin'
 
+
+
   target 'shoneTests' do
     inherit! :search_paths
     # Pods for testing
